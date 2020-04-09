@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Notification, Message } from "element-ui";
+import { Toast } from "mint-ui";
 
 let newAxios = axios.create({
   timeout: 15000 // 请求超时时间
@@ -14,21 +14,12 @@ newAxios.interceptors.response.use(
   function(error) {
     let message = error.response.data;
     if (error.message === "timeout of 1500ms exceeded") {
-      Notification({
-        title: "错误信息",
-        message: "请求超时，请稍后再试！",
-        type: "error",
-        duration: 5000
-      });
+      Toast("请求超时，请稍后再试！");
     }
     if (error.response.status === 401) {
       location.href = `/login`;
     } else {
-      Message({
-        type: "error",
-        message: message || "系统异常",
-        duration: 3000
-      });
+      Toast(message || "系统异常");
     }
     return Promise.reject(error);
   }

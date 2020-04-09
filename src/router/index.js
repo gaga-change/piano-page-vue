@@ -8,6 +8,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
+    meta: { title: "主页" },
     component: Home
   },
   {
@@ -22,8 +23,16 @@ const routes = [
   {
     path: "/login",
     name: "Login",
+    meta: { title: "登录" },
     component: () =>
       import(/* webpackChunkName: "login" */ "../views/Login.vue")
+  },
+  {
+    path: "/teacherForm",
+    name: "TeacherForm",
+    meta: { title: "资料填写" },
+    component: () =>
+      import(/* webpackChunkName: "teacherForm" */ "../views/TeacherForm.vue")
   }
 ];
 

@@ -3,16 +3,21 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-import ElementUI from "element-ui";
-import "element-ui/lib/theme-chalk/index.css";
+import MintUI from "mint-ui";
+import "./assets/less/main.less";
+import "./assets/css/normalize.css";
+import "mint-ui/lib/style.css";
 
-Vue.use(ElementUI);
+Vue.use(MintUI);
 
 Vue.config.productionTip = false;
 
 const whiteList = ["/login"]; // 不重定向白名单
 router.beforeEach((to, from, next) => {
-  console.log("???");
+  console.log(to.meta.tit);
+  if (to.meta && to.meta.title) {
+    document.title = to.meta.title;
+  }
   if (whiteList.includes(to.path)) {
     next();
   } else if (store.state.openid === null) {
