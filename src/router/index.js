@@ -38,7 +38,79 @@ const routes = [
         meta: { title: "资料填写" },
         component: () =>
           import(
-            /* webpackChunkName: "teacherForm" */ "../views/teacher/TeacherRegister.vue"
+            /* webpackChunkName: "teacherRegister" */ "../views/teacher/TeacherRegister.vue"
+          )
+      },
+      {
+        path: "describe",
+        name: "Describe",
+        meta: { title: "了解Carry陪练" },
+        component: () =>
+          import(
+            /* webpackChunkName: "describe" */ "../views/teacher/Describe.vue"
+          )
+      },
+      {
+        path: "inviteStudent",
+        name: "InviteStudent",
+        meta: { title: "邀请学生海报" },
+        component: () =>
+          import(
+            /* webpackChunkName: "inviteStudent" */ "../views/teacher/InviteStudent.vue"
+          )
+      },
+      {
+        path: "inviteTeacher",
+        name: "InviteTeacher",
+        meta: { title: "邀请老师海报" },
+        component: () =>
+          import(
+            /* webpackChunkName: "inviteTeacher" */ "../views/teacher/InviteTeacher.vue"
+          )
+      },
+      {
+        path: "teacherBonus",
+        name: "TeacherBonus",
+        meta: { title: "奖金细则" },
+        component: () =>
+          import(
+            /* webpackChunkName: "teacherBonus" */ "../views/teacher/TeacherBonus.vue"
+          )
+      },
+      {
+        path: "teacherWage",
+        name: "TeacherWage",
+        meta: { title: "我的资薪" },
+        component: () =>
+          import(
+            /* webpackChunkName: "teacherWage" */ "../views/teacher/TeacherWage.vue"
+          )
+      },
+      {
+        path: "teacherSystem",
+        name: "TeacherSystem",
+        meta: { title: "奖金与规章" },
+        component: () =>
+          import(
+            /* webpackChunkName: "teacherSystem" */ "../views/teacher/TeacherSystem.vue"
+          )
+      },
+      {
+        path: "teacherLeave",
+        name: "TeacherLeave",
+        meta: { title: "请假与离职" },
+        component: () =>
+          import(
+            /* webpackChunkName: "teacherLeave" */ "../views/teacher/TeacherLeave.vue"
+          )
+      },
+      {
+        path: "teacherCourse",
+        name: "TeacherCourse",
+        meta: { title: "我的课表" },
+        component: () =>
+          import(
+            /* webpackChunkName: "teacherCourse" */ "../views/teacher/TeacherCourse.vue"
           )
       }
     ]
