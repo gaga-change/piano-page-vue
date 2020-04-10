@@ -1,7 +1,7 @@
 <template>
-  <div class="TeacherRegister">
+  <div class="StudentRegister">
     <div class="info" v-if="!loading && !showForm">
-      <template v-if="teacher.status === 0">
+      <template v-if="student.status === 0">
         <img src="@/assets/img/warning.png" alt="" />
         <p>正在审核您的资料中...</p>
       </template>
@@ -11,10 +11,10 @@
       </template>
       <!-- <img src="../" alt=""> -->
     </div>
-    <div class="TeacherForm" v-if="showForm">
+    <div class="StudentForm" v-if="showForm">
       <mt-field
         label="姓名"
-        placeholder="请输入姓名"
+        placeholder="请输入您孩子的姓名"
         v-model="formData.name"
       ></mt-field>
       <mt-field
@@ -22,16 +22,6 @@
         placeholder="请输入手机号"
         type="tel"
         v-model="formData.phone"
-      ></mt-field>
-      <mt-field
-        label="学校"
-        placeholder="请输入学校"
-        v-model="formData.school"
-      ></mt-field>
-      <mt-field
-        label="专业"
-        placeholder="请输入专业"
-        v-model="formData.major"
       ></mt-field>
       <div class="btn-area mt20">
         <mt-button type="primary" @click.native="submit">提 交</mt-button>
@@ -41,11 +31,11 @@
 </template>
 
 <script>
-import { teachersList, teacherRegister } from "@/api";
+import { studentsList, studentRegister } from "@/api";
 import { Indicator } from "mint-ui";
 
 export default {
-  name: "TeacherRegister",
+  name: "StudentRegister",
   components: {},
   data() {
     return {
@@ -57,7 +47,7 @@ export default {
       },
       loading: true,
       showForm: false,
-      teacher: {}
+      student: {}
     };
   },
   created() {
@@ -67,7 +57,7 @@ export default {
     init() {
       this.loading = true;
       this.showForm = false;
-      this.teacher = {};
+      this.student = {};
       Object.keys(this.formData).forEach(key => {
         this.formData[key] = "";
       });
@@ -78,17 +68,17 @@ export default {
       已注册 - 为通审核
       已注册 - 审核被拒
     */
-      const openid = this.$store.state.teacherOpenid;
-      teachersList({ openid }).then(res => {
+      const openid = this.$store.state.studentOpenid;
+      studentsList({ openid }).then(res => {
         Indicator.close();
         this.loading = false;
         if (!res) return;
         if (res.list.length !== 0) {
-          const teacher = res.list[0];
-          this.teacher = teacher;
-          if (teacher.status === 0) {
+          const student = res.list[0];
+          this.student = student;
+          if (student.status === 0) {
             // 待审核
-          } else if (teacher.status === 1) {
+          } else if (student.status === 1) {
             // 已通过
           } else {
             // 拒绝 重新提交
@@ -102,20 +92,20 @@ export default {
     },
     submit() {
       const params = { ...this.formData };
-      params.openid = this.$store.state.teacherOpenid;
+      params.openid = this.$store.state.studentOpenid;
       if (!params.name) {
         this.$toast("请输入姓名");
       } else if (!params.phone) {
         this.$toast("请输入手机号码");
       } else {
-        if (this.teacher._id) {
-          params._id = this.teacher._id;
+        if (this.student._id) {
+          params._id = this.student._id;
         }
         this.$indicator.open();
-        teacherRegister(params).then(res => {
+        studentRegister(params).then(res => {
           this.$indicator.close();
           if (!res) return;
-          this.teacher = res;
+          this.student = res;
           this.showForm = false;
           // this.init();
         });
@@ -128,7 +118,7 @@ export default {
 };
 </script>
 <style lang="less">
-.TeacherRegister {
+.StudentRegister {
   padding: 15px;
   .info {
     position: fixed;

@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import TeacherIndex from "../views/teacher/Index";
+import StudentIndex from "../views/student/Index";
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,21 @@ const routes = [
     meta: { title: "登录" },
     component: () =>
       import(/* webpackChunkName: "login" */ "../views/Login.vue")
+  },
+  {
+    path: "/student",
+    component: StudentIndex,
+    children: [
+      {
+        path: "studentRegister",
+        name: "StudentRegister",
+        meta: { title: "资料填写" },
+        component: () =>
+          import(
+            /* webpackChunkName: "studentRegister" */ "../views/student/StudentRegister.vue"
+          )
+      }
+    ]
   },
   {
     path: "/teacher",

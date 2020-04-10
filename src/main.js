@@ -14,24 +14,25 @@ Vue.config.productionTip = false;
 
 const whiteList = ["/login"]; // 不重定向白名单
 router.beforeEach((to, from, next) => {
-  console.log(to);
+  console.log("to ", to);
+  const { studentOpenid, teacherOpenid } = store.state;
+  const isTeacher = to.path.includes("/teacher/");
   if (to.meta && to.meta.title) {
     document.title = to.meta.title;
   }
   if (whiteList.includes(to.path)) {
     next();
-  } else if (store.state.openid === null) {
-    store
-      .dispatch(
-        to.path.includes("teacher") ? "getTeacherOpenid" : "getStudentOpenid"
-      )
-      .then(res => {
-        if (typeof res === "string") {
-          next();
-        } else {
-          router.push({ name: "Login", query: { backUrl: to.fullPath } });
-        }
-      });
+  } else if ((isTeacher && !teacherOpenid) || (!isTeacher && !studentOpenid)) {
+    // 本地是否有openid，无请求当前cookie中openid
+    store.dispatch("getOpenid").then(res => {
+      const { studentOpenid, teacherOpenid } = res;
+      if ((isTeacher && !teacherOpenid) || (!isTeacher && !studentOpenid)) {
+        // cookie中依旧没有，则跳转登录
+        router.push({ name: "Login", query: { backUrl: to.fullPath } });
+      } else {
+        next();
+      }
+    });
   } else {
     next();
   }

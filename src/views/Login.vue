@@ -27,13 +27,18 @@ export default {
         .then(res => {
           console.log(res.data, "openid 微信登录");
           this.$store.commit("setOpenid", res.data);
+          console.log("???", backUrl);
           this.$router.replace(backUrl);
         })
         .catch(err => {
           const data = err.response.data;
           if (data.errcode === 40163) {
             // code 已被用，重新登录
-            location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa2c0420dfeaf8d24&redirect_uri=${encodeURIComponent(
+            location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${
+              backUrl.includes("teacher")
+                ? "wxa2c0420dfeaf8d24"
+                : "wx76bedc76c343e5a2"
+            }&redirect_uri=${encodeURIComponent(
               "http://static.local.shop.csj361.com/login?backUrl=" + backUrl
             )}&response_type=code&scope=snsapi_base&state=123#wechat_redirect`;
           } else {
@@ -41,7 +46,11 @@ export default {
           }
         });
     } else {
-      location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa2c0420dfeaf8d24&redirect_uri=${encodeURIComponent(
+      location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${
+        backUrl.includes("teacher")
+          ? "wxa2c0420dfeaf8d24"
+          : "wx76bedc76c343e5a2"
+      }&redirect_uri=${encodeURIComponent(
         "http://static.local.shop.csj361.com/login?backUrl=" + backUrl
       )}&response_type=code&scope=snsapi_base&state=123#wechat_redirect`;
     }

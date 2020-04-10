@@ -1,11 +1,14 @@
 import http from "./http";
 // import axios from "axios";
 
-export const getTeacherOpenid = () => http.get("/api/wx/teacher/account");
+/** 老师 获取openid */
+export const getOpenid = () => http.get("/api/wx/account");
+/** 老师 提交资料 */
 export const teacherRegister = params =>
   http.post("/api/wx/teacher/register", params);
-
-export const getStudentOpenid = () => http.get("/api/wx/student/account");
+/** 学生 提交资料 */
+export const studentRegister = params =>
+  http.post("/api/wx/student/register", params);
 
 // /** 枚举接口 */
 // export const enumsAdd = params => http.post(`/api/enums`, params)
@@ -28,11 +31,4 @@ export const teachersList = params => http.get(`/api/teachers`, params);
 // export const studentsDel = id => http.delete(`/api/students/${id}`)
 // export const studentsModify = (id, params) => http.put(`/api/students/${id}`, params)
 // export const studentsDetail = id => http.get(`/api/students/${id}`)
-// export const studentsList = params => http.get(`/api/students`, params)
-
-// /** 登录 */
-// export const userlogin = params => http.post(`/api/auth/login`, params)
-// /** 退出登录 */
-// export const logout = () => http.post(`/api/auth/logout`)
-// /** 获取用户信息 */
-// export const getInfo = () => http.get(`/api/auth/account`)
+export const studentsList = params => http.get(`/api/students`, params);
