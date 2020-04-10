@@ -14,7 +14,7 @@ Vue.config.productionTip = false;
 
 const whiteList = ["/login"]; // 不重定向白名单
 router.beforeEach((to, from, next) => {
-  console.log(to.meta.tit);
+  console.log(to);
   if (to.meta && to.meta.title) {
     document.title = to.meta.title;
   }
@@ -25,7 +25,7 @@ router.beforeEach((to, from, next) => {
       if (typeof res === "string") {
         next();
       } else {
-        router.push("/login");
+        router.push({ name: "Login", query: { backUrl: to.fullPath } });
       }
     });
   } else {

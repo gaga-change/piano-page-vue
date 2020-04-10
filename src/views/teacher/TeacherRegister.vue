@@ -30,11 +30,8 @@
 
 <script>
 export default {
-  name: "TeacherForm",
+  name: "TeacherRegister",
   components: {},
-  created() {
-    document.title = "资料填写";
-  },
   data() {
     return {
       formData: {
