@@ -1,19 +1,20 @@
 <template>
-  <div class="">
-    登录
-  </div>
+  <div class=""></div>
 </template>
 
 <script>
 import axios from "axios";
+import { Indicator } from "mint-ui";
 export default {
   name: "Login",
   data() {
-    return {
-      fullscreenLoading: true
-    };
+    return {};
   },
   created() {
+    Indicator.open({
+      text: "登录中...",
+      spinnerType: "fading-circle"
+    });
     const { code, backUrl } = this.$route.query;
     if (code) {
       axios
@@ -39,6 +40,9 @@ export default {
         "http://static.local.shop.csj361.com/login?backUrl=" + backUrl
       )}&response_type=code&scope=snsapi_base&state=123#wechat_redirect`;
     }
+  },
+  beforeDestroy() {
+    Indicator.close();
   }
 };
 </script>
