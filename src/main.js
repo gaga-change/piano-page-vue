@@ -21,18 +21,22 @@ router.beforeEach((to, from, next) => {
   if (whiteList.includes(to.path)) {
     next();
   } else if (store.state.openid === null) {
-    store.dispatch("getOpenid").then(res => {
-      if (typeof res === "string") {
-        next();
-      } else {
-        router.push({ name: "Login", query: { backUrl: to.fullPath } });
-      }
-    });
+    store
+      .dispatch(
+        to.path.includes("teacher") ? "getTeacherOpenid" : "getStudentOpenid"
+      )
+      .then(res => {
+        if (typeof res === "string") {
+          next();
+        } else {
+          router.push({ name: "Login", query: { backUrl: to.fullPath } });
+        }
+      });
   } else {
     next();
   }
 });
-
+Vue.prototype.$copy = obj => JSON.parse(JSON.stringify(obj));
 new Vue({
   router,
   store,

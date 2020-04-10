@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { getOpenid } from "@/api/index";
+import { getTeacherOpenid, getStudentOpenid } from "@/api/index";
 
 Vue.use(Vuex);
 
@@ -14,8 +14,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    getOpenid({ commit }) {
-      return getOpenid().then(res => {
+    getTeacherOpenid({ commit }) {
+      return getTeacherOpenid().then(res => {
+        if (typeof res === "string") {
+          commit("setOpenid", res);
+        }
+        return res;
+      });
+    },
+    getStudentOpenid({ commit }) {
+      return getStudentOpenid().then(res => {
         if (typeof res === "string") {
           commit("setOpenid", res);
         }

@@ -18,7 +18,12 @@ export default {
     const { code, backUrl } = this.$route.query;
     if (code) {
       axios
-        .get("/api/wx/login", { params: { code: code } })
+        .get(
+          `/api/wx/${
+            backUrl.includes("teacher") ? "teacher" : "student"
+          }/login`,
+          { params: { code: code } }
+        )
         .then(res => {
           console.log(res.data, "openid 微信登录");
           this.$store.commit("setOpenid", res.data);

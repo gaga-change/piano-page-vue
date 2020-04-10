@@ -1,7 +1,11 @@
 import http from "./http";
 // import axios from "axios";
 
-export const getOpenid = () => http.get("/api/wx/account");
+export const getTeacherOpenid = () => http.get("/api/wx/teacher/account");
+export const teacherRegister = params =>
+  http.post("/api/wx/teacher/register", params);
+
+export const getStudentOpenid = () => http.get("/api/wx/student/account");
 
 // /** 枚举接口 */
 // export const enumsAdd = params => http.post(`/api/enums`, params)
@@ -17,7 +21,7 @@ export const getOpenid = () => http.get("/api/wx/account");
 // export const teachersDel = id => http.delete(`/api/teachers/${id}`)
 // export const teachersModify = (id, params) => http.put(`/api/teachers/${id}`, params)
 // export const teachersDetail = id => http.get(`/api/teachers/${id}`)
-// export const teachersList = params => http.get(`/api/teachers`, params)
+export const teachersList = params => http.get(`/api/teachers`, params);
 
 // /** 学生接口 */
 // export const studentsAdd = params => http.post(`/api/students`, params)
