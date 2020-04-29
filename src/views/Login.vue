@@ -11,6 +11,7 @@ export default {
     return {};
   },
   created() {
+    const { origin } = window.location;
     Indicator.open({
       text: "登录中...",
       spinnerType: "fading-circle"
@@ -39,7 +40,7 @@ export default {
                 ? "wxa2c0420dfeaf8d24"
                 : "wx76bedc76c343e5a2"
             }&redirect_uri=${encodeURIComponent(
-              "http://page.carry.junn.top/login?backUrl=" + backUrl
+              `${origin}/login?backUrl=${backUrl}`
             )}&response_type=code&scope=snsapi_base&state=123#wechat_redirect`;
           } else {
             alert(data.errmsg || "系统异常");
@@ -51,7 +52,7 @@ export default {
           ? "wxa2c0420dfeaf8d24"
           : "wx76bedc76c343e5a2"
       }&redirect_uri=${encodeURIComponent(
-        "http://page.carry.junn.top/login?backUrl=" + backUrl
+        `${origin}/login?backUrl=${backUrl}`
       )}&response_type=code&scope=snsapi_base&state=123#wechat_redirect`;
     }
   },

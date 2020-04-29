@@ -1,8 +1,7 @@
 module.exports = {
   devServer: {
-    host: "static.local.shop.csj361.com",
+    host: "testteacher.wx.carry.junn.top",
     port: 80,
-    // port: 8682,
     https: false,
     open: true,
     hotOnly: true,
