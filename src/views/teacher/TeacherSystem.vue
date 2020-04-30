@@ -1,5 +1,5 @@
 <template>
   <div>
-    奖金与规章
+    <img style="width: 100%" src="@/assets/img/teacher-rule.jpg" alt="" />
   </div>
 </template>
