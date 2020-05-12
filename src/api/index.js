@@ -32,3 +32,8 @@ export const teachersList = params => http.get(`/api/teachers`, params);
 // export const studentsModify = (id, params) => http.put(`/api/students/${id}`, params)
 // export const studentsDetail = id => http.get(`/api/students/${id}`)
 export const studentsList = params => http.get(`/api/students`, params);
+/** 获取周期内的课程 */
+export const coursesActivateArea = params =>
+  http.get(`/api/coursesActivateArea`, params);
+
+export const spaceRulesList = params => http.get(`/api/spaceRules`, params);
