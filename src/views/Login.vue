@@ -28,7 +28,6 @@ export default {
         .then(res => {
           console.log(res.data, "openid 微信登录");
           this.$store.commit("setOpenid", res.data);
-          console.log("???", backUrl);
           this.$router.replace(backUrl);
         })
         .catch(err => {

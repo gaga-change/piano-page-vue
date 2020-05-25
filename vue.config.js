@@ -1,6 +1,6 @@
 module.exports = {
   devServer: {
-    host: "testteacher.wx.carry.junn.top",
+    host: "page.wx.carry.junn.top",
     port: 80,
     https: false,
     open: true,
