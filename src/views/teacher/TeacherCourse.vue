@@ -72,14 +72,14 @@ const WEEK = ["周日", "周一", "周二", "周三", "周四", "周五", "周�
 import { coursesActivateArea, spaceRulesList } from "@/api";
 export default {
   computed: {
-    userInfo() {
-      return this.$store.state.userInfo;
+    user() {
+      return this.$store.state.user;
     }
   },
   watch: {
-    userInfo() {
-      console.log(this.userInfo, "#watch");
-      if (this.userInfo) {
+    user() {
+      console.log(this.user, "#watch");
+      if (this.user) {
         this.init();
       }
     }
@@ -95,7 +95,7 @@ export default {
     };
   },
   created() {
-    if (this.userInfo) {
+    if (this.user) {
       this.init();
     } else {
       this.$router.replace({ name: "TeacherRegister" });
@@ -103,7 +103,7 @@ export default {
   },
   methods: {
     init() {
-      const id = this.userInfo._id;
+      const id = this.user._id;
       const params = {};
       params[this.type] = id;
       this.loading = true;

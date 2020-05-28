@@ -45,7 +45,7 @@ const routes = [
       {
         path: "inviteStudent",
         name: "InviteStudent",
-        meta: { title: "邀请学生海报" },
+        meta: { title: "邀请海报" },
         component: () =>
           import(
             /* webpackChunkName: "inviteStudent" */ "../views/student/InviteStudent.vue"

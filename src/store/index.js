@@ -9,13 +9,13 @@ export default new Vuex.Store({
     openid: null,
     teacherOpenid: null,
     studentOpenid: null,
-    userInfo: null
+    user: null
   },
   mutations: {
     setOpenid(state, val) {
       state.teacherOpenid = val.teacherOpenid;
       state.studentOpenid = val.studentOpenid;
-      state.userInfo = val.userInfo;
+      state.user = val.user;
     }
   },
   actions: {
