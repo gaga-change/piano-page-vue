@@ -6,6 +6,7 @@ import store from "./store";
 import MintUI from "mint-ui";
 import "./assets/less/main.less";
 import "./assets/css/normalize.css";
+import "./assets/css/font/iconfont.css";
 import "mint-ui/lib/style.css";
 
 Vue.use(MintUI);

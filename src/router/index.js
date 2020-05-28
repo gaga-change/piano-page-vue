@@ -123,7 +123,7 @@ const routes = [
       {
         path: "teacherLeave",
         name: "TeacherLeave",
-        meta: { title: "请假与离职" },
+        meta: { title: "请假" },
         component: () =>
           import(
             /* webpackChunkName: "teacherLeave" */ "../views/teacher/TeacherLeave.vue"
