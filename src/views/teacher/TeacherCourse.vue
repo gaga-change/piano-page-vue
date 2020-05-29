@@ -86,7 +86,7 @@ export default {
   },
   data() {
     return {
-      type: this.$store.state.teacherOpenid ? "teacher" : "student",
+      type: "teacher",
       loading: false,
       tableTitle: [],
       tableTime: [],

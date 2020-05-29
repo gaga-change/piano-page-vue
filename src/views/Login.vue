@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import axios from "axios";
 import { Indicator } from "mint-ui";
+import { login } from "@/api";
 export default {
   name: "Login",
   data() {
@@ -18,33 +18,26 @@ export default {
     });
     const { code, backUrl } = this.$route.query;
     if (code) {
-      axios
-        .get(
-          `/api/wx/${
-            backUrl.includes("teacher") ? "teacher" : "student"
-          }/login`,
-          { params: { code: code } }
-        )
-        .then(res => {
-          console.log(res.data, "openid 微信登录");
-          this.$store.commit("setOpenid", res.data);
+      login({ code }).then(res => {
+        if (!res) return;
+        console.log(" .then ???", res);
+        // console.log(res.data, "openid 微信登录");
+        if (res.errcode === 40163) {
+          // code 已被用，重新登录
+          location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${
+            backUrl.includes("teacher")
+              ? "wxa2c0420dfeaf8d24"
+              : "wx76bedc76c343e5a2"
+          }&redirect_uri=${encodeURIComponent(
+            `${origin}/login?backUrl=${backUrl}`
+          )}&response_type=code&scope=snsapi_base&state=123#wechat_redirect`;
+        } else if (res.errmsg) {
+          alert(res.errmsg);
+        } else {
+          // this.$store.commit("setOpenid", res.data);
           this.$router.replace(backUrl);
-        })
-        .catch(err => {
-          const data = err.response.data;
-          if (data.errcode === 40163) {
-            // code 已被用，重新登录
-            location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${
-              backUrl.includes("teacher")
-                ? "wxa2c0420dfeaf8d24"
-                : "wx76bedc76c343e5a2"
-            }&redirect_uri=${encodeURIComponent(
-              `${origin}/login?backUrl=${backUrl}`
-            )}&response_type=code&scope=snsapi_base&state=123#wechat_redirect`;
-          } else {
-            alert(data.errmsg || "系统异常");
-          }
-        });
+        }
+      });
     } else {
       location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${
         backUrl.includes("teacher")

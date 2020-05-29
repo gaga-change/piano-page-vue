@@ -68,7 +68,7 @@ export default {
       已注册 - 为通审核
       已注册 - 审核被拒
     */
-      const openid = this.$store.state.studentOpenid;
+      const openid = this.$store.state.openid;
       studentsList({ openid }).then(res => {
         Indicator.close();
         this.loading = false;
@@ -92,15 +92,11 @@ export default {
     },
     submit() {
       const params = { ...this.formData };
-      params.openid = this.$store.state.studentOpenid;
       if (!params.name) {
         this.$toast("请输入姓名");
       } else if (!params.phone) {
         this.$toast("请输入手机号码");
       } else {
-        if (this.student._id) {
-          params._id = this.student._id;
-        }
         this.$indicator.open();
         studentRegister(params).then(res => {
           this.$indicator.close();

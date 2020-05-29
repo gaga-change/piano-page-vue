@@ -21,11 +21,24 @@
   </div>
 </template>
 <script>
+import { getReadyCourses } from "@/api";
 export default {
   data() {
     return {
-      active: "tab-container1"
+      active: "form"
     };
+  },
+  created() {
+    this.initCourse();
+  },
+  methods: {
+    /** 获取有效期内的课程 */
+    initCourse() {
+      getReadyCourses().then(res => {
+        if (!res) return;
+        console.log(res);
+      });
+    }
   }
 };
 </script>

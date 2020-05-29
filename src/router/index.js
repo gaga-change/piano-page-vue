@@ -30,6 +30,12 @@ const routes = [
       import(/* webpackChunkName: "login" */ "../views/Login.vue")
   },
   {
+    path: "/temp",
+    name: "temp",
+    meta: { title: "登录" },
+    component: () => import(/* webpackChunkName: "temp" */ "../views/Temp.vue")
+  },
+  {
     path: "/student",
     component: StudentIndex,
     children: [

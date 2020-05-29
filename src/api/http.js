@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Toast } from "mint-ui";
+import router from "../router";
 
 let newAxios = axios.create({
   timeout: 15000 // 请求超时时间
@@ -12,12 +13,29 @@ newAxios.interceptors.response.use(
     return response.data;
   },
   function(error) {
-    let message = error.response.data;
+    let data = error.response.data;
+    let message = "";
+    if (typeof data === "string") {
+      message = data;
+    }
+    if (data.errcode) {
+      console.log(" 跳过 ");
+      return Promise.resolve(data);
+    }
     if (error.message === "timeout of 1500ms exceeded") {
       Toast("请求超时，请稍后再试！");
-    }
-    if (error.response.status === 401) {
-      location.href = `/login`;
+    } else if (error.response.status === 401) {
+      // 未登录
+      router.push({ name: "Login", query: { backUrl: location.pathname } });
+      // Toast(message);
+    } else if (error.response.status === 402) {
+      // 已登录，未提交资料
+      if (~location.pathname.indexOf("teacher")) {
+        router.push({ name: "TeacherRegister" });
+      } else {
+        router.push({ name: "StudentRegister" });
+      }
+      // Toast(message);
     } else {
       Toast(message || "系统异常");
     }
