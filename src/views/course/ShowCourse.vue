@@ -69,12 +69,11 @@
  */
 const WEEK = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
 
-import { coursesActivateArea, spaceRulesList } from "@/api";
+import { getReadyCourses, spaceRulesList } from "@/api";
+import { mapState } from "vuex";
 export default {
   computed: {
-    user() {
-      return this.$store.state.user;
-    }
+    ...mapState(["user", "isTeacher", "type"])
   },
   watch: {
     user() {
@@ -86,7 +85,6 @@ export default {
   },
   data() {
     return {
-      type: "teacher",
       loading: false,
       tableTitle: [],
       tableTime: [],
@@ -95,11 +93,8 @@ export default {
     };
   },
   created() {
-    if (this.user) {
-      this.init();
-    } else {
-      this.$router.replace({ name: "TeacherRegister" });
-    }
+    console.log(this.isTeacher, this.type);
+    this.init();
   },
   methods: {
     init() {
@@ -108,7 +103,7 @@ export default {
       params[this.type] = id;
       this.loading = true;
       Promise.all([
-        coursesActivateArea(params),
+        getReadyCourses(params),
         spaceRulesList({ ...params, pageSize: 999 })
       ]).then(res => {
         const [courses, sapceRules] = res;

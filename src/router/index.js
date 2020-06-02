@@ -36,6 +36,13 @@ const routes = [
     component: () => import(/* webpackChunkName: "temp" */ "../views/Temp.vue")
   },
   {
+    path: "/showCourse",
+    name: "ShowCourse",
+    meta: { title: "我的课表" },
+    component: () =>
+      import(/* webpackChunkName: "course" */ "../views/course/ShowCourse.vue")
+  },
+  {
     path: "/student",
     component: StudentIndex,
     children: [
@@ -133,15 +140,6 @@ const routes = [
         component: () =>
           import(
             /* webpackChunkName: "teacherLeave" */ "../views/teacher/TeacherLeave.vue"
-          )
-      },
-      {
-        path: "teacherCourse",
-        name: "TeacherCourse",
-        meta: { title: "我的课表" },
-        component: () =>
-          import(
-            /* webpackChunkName: "teacherCourse" */ "../views/teacher/TeacherCourse.vue"
           )
       }
     ]

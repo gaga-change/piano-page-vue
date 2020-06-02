@@ -7,7 +7,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     openid: null,
-    user: null
+    user: null,
+    isTeacher: !!~location.hostname.indexOf("teacher"),
+    type: ~location.hostname.indexOf("teacher") ? "teacher" : "student"
   },
   mutations: {
     setOpenid(state, val) {

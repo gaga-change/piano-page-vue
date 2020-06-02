@@ -20,7 +20,7 @@ export const teachersList = params => http.get(`/api/teachers`, params);
 export const studentsList = params => http.get(`/api/students`, params);
 /** 获取周期内的课程 */
 export const coursesActivateArea = params =>
-  http.get(`/api/coursesActivateArea`, params);
+  http.get(`/api/courses/coursesActivateArea`, params);
 /** 获取个人未开始的课程 */
 export const getReadyCourses = params =>
   http.get(`/api/wx/getReadyCourses`, params);

@@ -30,7 +30,7 @@ newAxios.interceptors.response.use(
       // Toast(message);
     } else if (error.response.status === 402) {
       // 已登录，未提交资料
-      if (~location.pathname.indexOf("teacher")) {
+      if (~location.hostname.indexOf("teacher")) {
         router.push({ name: "TeacherRegister" });
       } else {
         router.push({ name: "StudentRegister" });
