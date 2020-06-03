@@ -3,7 +3,7 @@
     <mt-tab-container v-model="active">
       <mt-tab-container-item id="form">
         <mt-cell
-          class="mb15"
+          class="mb15 mt15"
           v-for="item in courseList"
           :title="`${item.dateStr} ${item.weekName}`"
           :label="
@@ -22,7 +22,7 @@
       </mt-tab-container-item>
       <mt-tab-container-item id="list">
         <mt-cell
-          class="mb15"
+          class="mb15 mt15"
           v-for="item in leaveAreaList"
           :title="`${item.dateStr} ${item.weekName}`"
           :label="
@@ -132,6 +132,10 @@ export default {
         .prompt("请输入理由")
         .then(({ value, action }) => {
           if (action === "confirm") {
+            if (value && value.length > 100) {
+              this.$toast("请假理由字数不能超过100");
+              return;
+            }
             this.$loading();
             this.loading = true;
             leaveAreasAdd({
