@@ -220,14 +220,9 @@ export default {
     white-space: pre-wrap;
     word-break: break-all;
   }
-  .mint-cell {
-    margin: 10px 0;
-    background-color: aquamarine;
-  }
-  .mint-cell-wrapper {
+  .mint-cell-title {
     padding-top: 15px;
     padding-bottom: 15px;
-    background-color: antiquewhite;
   }
   .leaveAreaStatus {
     span.iconfont {
