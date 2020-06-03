@@ -3,7 +3,8 @@
     <mt-tab-container v-model="active">
       <mt-tab-container-item id="form">
         <mt-cell
-          class="mb15 mt15"
+          class="mb15"
+          style="padding-top:15px"
           v-for="item in courseList"
           :title="`${item.dateStr} ${item.weekName}`"
           :label="
@@ -22,7 +23,8 @@
       </mt-tab-container-item>
       <mt-tab-container-item id="list">
         <mt-cell
-          class="mb15 mt15"
+          class="mb15 "
+          style="padding-top:15px"
           v-for="item in leaveAreaList"
           :title="`${item.dateStr} ${item.weekName}`"
           :label="
