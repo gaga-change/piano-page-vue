@@ -25,3 +25,6 @@ export const coursesActivateArea = params =>
 export const getReadyCourses = params =>
   http.get(`/api/wx/getReadyCourses`, params);
 export const spaceRulesList = params => http.get(`/api/spaceRules`, params);
+/** 请假 */
+export const leaveAreasAdd = params => http.post(`/api/leaveAreas`, params);
+export const leaveAreasList = params => http.get(`/api/leaveAreas`, params);

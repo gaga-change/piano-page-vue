@@ -19,7 +19,6 @@ newAxios.interceptors.response.use(
       message = data;
     }
     if (data.errcode) {
-      console.log(" 跳过 ");
       return Promise.resolve(data);
     }
     if (error.message === "timeout of 1500ms exceeded") {

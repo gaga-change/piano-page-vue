@@ -77,7 +77,6 @@ export default {
   },
   watch: {
     user() {
-      console.log(this.user, "#watch");
       if (this.user) {
         this.init();
       }
@@ -93,7 +92,6 @@ export default {
     };
   },
   created() {
-    console.log(this.isTeacher, this.type);
     this.init();
   },
   methods: {
@@ -111,7 +109,6 @@ export default {
         if (!courses || !sapceRules) return;
         this.drawCourse(courses);
         this.drawSpaceRules(sapceRules.list);
-        console.log(courses, sapceRules);
       });
       this.initDraw();
     },
