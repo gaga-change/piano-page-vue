@@ -3,7 +3,6 @@
     <mt-tab-container v-model="active">
       <mt-tab-container-item id="form">
         <mt-cell
-          class="mb15"
           v-for="item in courseList"
           :title="`${item.dateStr} ${item.weekName}`"
           :label="
@@ -22,7 +21,6 @@
       </mt-tab-container-item>
       <mt-tab-container-item id="list">
         <mt-cell
-          class="mb15 "
           v-for="item in leaveAreaList"
           :title="`${item.dateStr} ${item.weekName}`"
           :label="
@@ -222,8 +220,14 @@ export default {
     white-space: pre-wrap;
     word-break: break-all;
   }
+  .mint-cell {
+    margin: 10px 0;
+    background-color: aquamarine;
+  }
   .mint-cell-wrapper {
     padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: antiquewhite;
   }
   .leaveAreaStatus {
     span.iconfont {
