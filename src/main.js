@@ -11,14 +11,19 @@ import "./assets/css/normalize.css";
 // import "./assets/css/font/iconfont.css";
 import "mint-ui/lib/style.css";
 import moment from "moment";
+import Spinner from "./components/Spinner";
 
 Vue.use(MintUI);
 Vue.component("Empty", Empty);
+Vue.component("Spinner", Spinner);
 
 Vue.prototype.$moment = moment;
 Vue.prototype.$messageBox = MessageBox;
 Vue.prototype.$loading = () => Indicator.open({ spinnerType: "fading-circle" });
 Vue.prototype.$loaded = () => Indicator.close();
+Vue.filter("moment", function(value, format) {
+  return moment(value).format(format || "YYYY-MM-DD HH:mm:ss");
+});
 
 Vue.config.productionTip = false;
 

@@ -11,6 +11,9 @@ export default new Vuex.Store({
     isTeacher: !!~location.hostname.indexOf("teacher"),
     type: ~location.hostname.indexOf("teacher") ? "teacher" : "student"
   },
+  getters: {
+    userId: state => state.user && state.user._id
+  },
   mutations: {
     setOpenid(state, val) {
       state.openid = val.openid;

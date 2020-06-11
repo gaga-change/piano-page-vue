@@ -9,12 +9,22 @@ export const teacherRegister = params =>
   http.post("/api/wx/teacher/register", params);
 export const teacherSelfCode = params =>
   http.get("/api/wx/teacher/selfCode", params);
+/** 老师端抢课 */
+export const teacherTakeCourse = params =>
+  http.post("/api/wx/teacher/takeCourse", params);
 
 /** 学生 提交资料 */
 export const studentRegister = params =>
   http.post("/api/wx/student/register", params);
 export const studentSelfCode = params =>
   http.get("/api/wx/student/selfCode", params);
+
+/** 抢课单接口 */
+// export const takeCoursesAdd = params => http.post(`/api/takeCourses`, params)
+// export const takeCoursesDel = id => http.delete(`/api/takeCourses/${id}`)
+// export const takeCoursesModify = (id, params) => http.put(`/api/takeCourses/${id}`, params)
+export const takeCoursesDetail = id => http.get(`/api/takeCourses/${id}`)
+// export const takeCoursesList = params => http.get(`/api/takeCourses`, params)
 
 export const teachersList = params => http.get(`/api/teachers`, params);
 export const studentsList = params => http.get(`/api/students`, params);

@@ -96,6 +96,15 @@ const routes = [
           )
       },
       {
+        path: "TakeCourse",
+        name: "TakeCourse",
+        meta: { title: "抢课" },
+        component: () =>
+          import(
+            /* webpackChunkName: "TakeCourse" */ "../views/teacher/TakeCourse.vue"
+          )
+      },
+      {
         path: "inviteStudent",
         name: "InviteStudent",
         meta: { title: "邀请学生海报" },
