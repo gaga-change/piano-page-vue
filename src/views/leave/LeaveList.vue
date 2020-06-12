@@ -26,7 +26,7 @@
           :label="
             `${item.startTimeStr}-${item.endTimeStr} ${item.targetName}${
               item.typeName
-            } ${item.reason ? '\r\n【理由：' + item.reason + '】' : ''}`
+            } ${item.reason ? '\r\n【原因：' + item.reason + '】' : ''}`
           "
           :key="item._id"
         >
@@ -81,6 +81,7 @@
 <script>
 import { getReadyCourses, leaveAreasAdd, leaveAreasList } from "@/api";
 import { mapState } from "vuex";
+
 const WEEK = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
 export default {
   name: "LeaveList",
@@ -118,20 +119,20 @@ export default {
   },
   methods: {
     getScrollTop() {
-      const num =
+      return (
         window.pageYOffset ||
         document.documentElement.scrollTop ||
-        document.body.scrollTop;
-      return num;
+        document.body.scrollTop
+      );
     },
     /** 请假点击 */
     hanldeLeaveClick(item) {
       this.$messageBox
-        .prompt("请输入理由")
+        .prompt("请输入原因")
         .then(({ value, action }) => {
           if (action === "confirm") {
             if (value && value.length > 100) {
-              this.$toast("请假理由字数不能超过100");
+              this.$toast("请假原因字数不能超过100");
               return;
             }
             this.$loading();
