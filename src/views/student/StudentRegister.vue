@@ -1,5 +1,24 @@
 <template>
   <div class="StudentRegister">
+    <div class="bg"></div>
+    <div>
+      <!-- 头部 -->
+      <div class="title-area">
+        <img
+          class="left-img"
+          src="@/assets/img/student/register/leftgaga.png"
+          alt=""
+        />
+        <h2>恭喜您！</h2>
+        <img
+          class="right-img"
+          src="@/assets/img/student/register/leftgaga.png"
+          alt=""
+        />
+      </div>
+      <!-- 中间 -->
+      <div></div>
+    </div>
     <div class="info" v-if="!loading && !showForm">
       <template v-if="student.status === 0">
         <img src="@/assets/img/warning.png" alt="" />
@@ -114,8 +133,38 @@ export default {
 };
 </script>
 <style lang="less">
+@import "../../assets/less/base";
+
 .StudentRegister {
-  padding: 15px;
+  .bg {
+    height: 100vh;
+    width: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: #7dc0da;
+  }
+  /*padding: 15px;*/
+  .pdd(15, 75, 15, 75);
+
+  .title-area {
+    .h(109);
+    display: flex;
+    .left-img {
+      height: 100%;
+    }
+    .right-img {
+      height: 100%;
+    }
+    h2 {
+      flex: 1;
+      color: #ff0000;
+      .fs(48);
+      text-align: center;
+    }
+  }
+
   .info {
     position: fixed;
     width: 100%;
@@ -126,11 +175,13 @@ export default {
     justify-content: center;
     flex-wrap: wrap;
     align-content: center;
+
     p {
       width: 100%;
       text-align: center;
     }
   }
+
   .btn-area {
     button {
       width: 100%;

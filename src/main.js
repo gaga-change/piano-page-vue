@@ -13,6 +13,19 @@ import "mint-ui/lib/style.css";
 import moment from "moment";
 import Spinner from "./components/Spinner";
 
+(function(doc, win) {
+  const docEl = doc.documentElement,
+    resizeEvt = "orientationchange" in window ? "orientationchange" : "resize",
+    recalc = function() {
+      const clientWidth = docEl.clientWidth;
+      if (!clientWidth) return;
+      docEl.style.fontSize = window.screen.width / 10 + "px";
+    };
+  if (!doc.addEventListener) return;
+  win.addEventListener(resizeEvt, recalc, false);
+  doc.addEventListener("DOMContentLoaded", recalc, false);
+})(document, window);
+
 Vue.use(MintUI);
 Vue.component("Empty", Empty);
 Vue.component("Spinner", Spinner);
