@@ -10,7 +10,7 @@
           "
           :key="item._id"
         >
-          <mt-button size="small" type="primary" @click="hanldeLeaveClick(item)"
+          <mt-button size="small" type="primary" @click="handleLeaveClick(item)"
             >请假</mt-button
           >
         </mt-cell>
@@ -126,7 +126,7 @@ export default {
       );
     },
     /** 请假点击 */
-    hanldeLeaveClick(item) {
+    handleLeaveClick(item) {
       this.$messageBox
         .prompt("请输入原因")
         .then(({ value, action }) => {
