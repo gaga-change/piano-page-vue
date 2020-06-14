@@ -6,46 +6,81 @@
       <div class="title-area">
         <img
           class="left-img"
-          src="@/assets/img/student/register/leftgaga.png"
+          src="@/assets/img/student/register/leftgaga@2x.png"
           alt=""
         />
         <h2>恭喜您！</h2>
         <img
           class="right-img"
-          src="@/assets/img/student/register/leftgaga.png"
+          src="@/assets/img/student/register/leftgaga@2x.png"
           alt=""
         />
       </div>
-      <!-- 中间 -->
-      <div></div>
-    </div>
-    <div class="info" v-if="!loading && !showForm">
-      <template v-if="student.status === 0">
-        <img src="@/assets/img/warning.png" alt="" />
-        <p>正在审核您的资料中...</p>
-      </template>
-      <template v-else>
-        <img src="@/assets/img/success.png" alt="" />
-        <p>资料已审核通过</p>
-      </template>
-      <!-- <img src="../" alt=""> -->
-    </div>
-    <div class="StudentForm" v-if="showForm">
-      <mt-field
-        label="姓名"
-        placeholder="请输入您孩子的姓名"
-        v-model="formData.name"
-      ></mt-field>
-      <mt-field
-        label="手机号"
-        placeholder="请输入手机号"
-        type="tel"
-        v-model="formData.phone"
-      ></mt-field>
-      <div class="btn-area mt20">
-        <mt-button type="primary" @click.native="submit">提 交</mt-button>
+<!-- 中间 -->
+      <div class="middle-area">
+        <div class="box">
+          <img
+                  class="right-img"
+                  src="@/assets/img/student/register/heart@2x.png"
+                  alt=""
+          />
+          <p>成功领取到一节50分钟一对一陪练课！</p>
+          <p>
+            接下来请完成宝贝的基本信息，我们将根据宝贝的自身特色选择合适的优质教师给您！
+          </p>
+        </div>
+      </div>
+      <!-- 底部 -->
+      <div class="bottom-area">
+        <div class="input-item">
+          <span class="label">宝贝的姓名：</span>
+          <input type="text" v-model="formData.name">
+        </div>
+        <div class="input-item">
+          <span class="label">宝贝的年龄：</span>
+          <input type="text" v-model="formData.age">
+        </div>
+        <div class="input-item">
+          <span class="label">宝贝的学琴年限：</span>
+          <input type="text" v-model="formData.studyAge">
+        </div>
+        <div class="input-item">
+          <span class="label">宝贝需要陪练的乐器是：</span>
+          <input type="text" v-model="formData.instrumentStr">
+        </div>
+        <div class="input-item">
+          <span class="label">家长的手机号：</span>
+          <input type="text" v-model="formData.phone">
+        </div>
       </div>
     </div>
+<!--    <div class="info" v-if="!loading && !showForm">-->
+<!--      <template v-if="student.status === 0">-->
+<!--        <img src="@/assets/img/warning.png" alt="" />-->
+<!--        <p>正在审核您的资料中...</p>-->
+<!--      </template>-->
+<!--      <template v-else>-->
+<!--        <img src="@/assets/img/success.png" alt="" />-->
+<!--        <p>资料已审核通过</p>-->
+<!--      </template>-->
+<!--      &lt;!&ndash; <img src="../" alt=""> &ndash;&gt;-->
+<!--    </div>-->
+<!--    <div class="StudentForm" v-if="showForm">-->
+<!--      <mt-field-->
+<!--        label="姓名"-->
+<!--        placeholder="请输入您孩子的姓名"-->
+<!--        v-model="formData.name"-->
+<!--      ></mt-field>-->
+<!--      <mt-field-->
+<!--        label="手机号"-->
+<!--        placeholder="请输入手机号"-->
+<!--        type="tel"-->
+<!--        v-model="formData.phone"-->
+<!--      ></mt-field>-->
+<!--      <div class="btn-area mt20">-->
+<!--        <mt-button type="primary" @click.native="submit">提 交</mt-button>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </template>
 
@@ -61,8 +96,9 @@ export default {
       formData: {
         name: "",
         phone: "",
-        school: "",
-        major: ""
+        instrumentStr: "",
+        studyAge: "",
+        age: "",
       },
       loading: true,
       showForm: false,
@@ -139,7 +175,7 @@ export default {
   .bg {
     height: 100vh;
     width: 100vh;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: -1;
@@ -164,23 +200,53 @@ export default {
       text-align: center;
     }
   }
-
-  .info {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
+  .middle-area {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-content: center;
-
-    p {
-      width: 100%;
+    align-items: center;
+    .mt(10);
+    .h(240);
+    .brd(3, solid,rgba(255,255,255,1));
+    .borderRadius(1px);
+    .box {
       text-align: center;
+      .h(195);
+      background: #fff;
+      .fs(28);
+      img {
+        float: right;
+        .w(61);
+        .mr(29);
+        .mt(29);
+      }
+      p {
+        .pdd(3, 6, 3, 6);
+        line-height: 1.5;
+      }
     }
   }
+
+  .bottom-area {
+    .w(600);
+    .h(810);
+    background: #fff;
+  }
+
+  /*.info {*/
+  /*  position: fixed;*/
+  /*  width: 100%;*/
+  /*  height: 100%;*/
+  /*  left: 0;*/
+  /*  top: 0;*/
+  /*  display: flex;*/
+  /*  justify-content: center;*/
+  /*  flex-wrap: wrap;*/
+  /*  align-content: center;*/
+
+  /*  p {*/
+  /*    width: 100%;*/
+  /*    text-align: center;*/
+  /*  }*/
+  /*}*/
 
   .btn-area {
     button {
