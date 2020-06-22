@@ -186,6 +186,7 @@ export default {
     .course-header {
       display: flex;
       margin-bottom: 10px;
+      color: #868686;
       span {
         flex: 1;
         text-align: center;
@@ -206,6 +207,7 @@ export default {
           padding-top: 2px;
           // background-color: aquamarine;
           margin-bottom: 3px;
+          opacity: 0.5;
         }
       }
       .course-grad {
@@ -240,7 +242,7 @@ export default {
               justify-content: center;
 
               height: 100%;
-              border-radius: 5px;
+              border-radius: 2px;
             }
           }
           .course-item {
@@ -263,7 +265,7 @@ export default {
             width: 100%;
             height: 100%;
             background-color: bisque;
-            border-radius: 5px;
+            border-radius: 2px;
             overflow: hidden;
           }
         }
