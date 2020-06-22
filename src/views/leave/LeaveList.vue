@@ -37,7 +37,7 @@
             </span>
             <span v-else-if="item.status === 1" class="leaveAreaStatus">
               <span class="iconfont icon-tongguo" slot="icon" />
-              <span>已审核</span>
+              <span>已通过</span>
             </span>
             <span v-else-if="item.status === 2" class="leaveAreaStatus">
               <span class="iconfont icon-yijujue" slot="icon" />
