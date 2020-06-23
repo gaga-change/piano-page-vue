@@ -1,6 +1,7 @@
 <template>
   <div class="StudentRegister">
     <div class="info" v-if="!loading && !showForm">
+<!--    <div class="info" v-if="false">-->
       <template v-if="student.status === 0">
         <div class="submit-success">
           <img style="max-width: 100%" :src="submitSuccess" alt="提交成功" />
@@ -13,6 +14,7 @@
       <!-- <img src="../" alt=""> -->
     </div>
     <div v-if="showForm">
+<!--    <div>-->
       <div class="register-home-page" v-if="!next">
         <img :src="registerHome" alt="注册" />
         <div class="btn-area" @click="next = true"></div>
@@ -314,7 +316,8 @@ export default {
 
     .bottom-area {
       .w(600);
-      .h(710);
+      //.h(710);
+      .pb(60);
       overflow: hidden;
       background: #fff;
       .pl(20);
@@ -323,6 +326,7 @@ export default {
 
       .input-item {
         display: flex;
+        align-items: center;
         .mt(60);
         .fs(28);
 
@@ -333,13 +337,16 @@ export default {
         div {
           flex: 1;
           width: 100%;
-
+          display: flex;
+          align-items: center;
           input {
             display: block;
             border: none;
             border-bottom: 1px solid #868686;
             box-shadow: none;
-            outline: none;
+            appearance: none;
+            border-radius: 0;
+            outline: 0;
             width: 100%;
             .maxW(400);
           }
