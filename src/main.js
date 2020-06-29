@@ -56,6 +56,7 @@ router.beforeEach((to, from, next) => {
         // cookie中依旧没有，则跳转登录
         router.push({ name: "Login", query: { backUrl: to.fullPath } });
       } else {
+        store.dispatch('gitMap')
         next();
       }
     });
