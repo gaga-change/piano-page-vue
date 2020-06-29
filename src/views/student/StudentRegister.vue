@@ -1,20 +1,20 @@
 <template>
   <div class="StudentRegister">
     <div class="info" v-if="!loading && !showForm">
-<!--    <div class="info" v-if="false">-->
+      <!--    <div class="info" v-if="false">-->
       <template v-if="student.status === 0">
         <div class="submit-success">
           <img style="max-width: 100%" :src="submitSuccess" alt="提交成功" />
         </div>
       </template>
       <template v-else>
-        <img src="@/assets/img/success.png" alt="" />
+        <img :src="registerSuccessImg" alt="资料已审核通过" />
         <p>资料已审核通过</p>
       </template>
       <!-- <img src="../" alt=""> -->
     </div>
     <div v-if="showForm">
-<!--    <div>-->
+      <!--    <div>-->
       <div class="register-home-page" v-if="!next">
         <img :src="registerHome" alt="注册" />
         <div class="btn-area" @click="next = true"></div>
@@ -24,25 +24,17 @@
         <div>
           <!-- 头部 -->
           <div class="title-area">
-            <img
-              class="left-img"
-              src="@/assets/img/student/register/leftgaga@2x.png"
-              alt=""
-            />
+            <img class="left-img" :src="leftGagaImg" alt="恭喜您" />
             <h2>恭喜您！</h2>
-            <img
-              class="right-img"
-              src="@/assets/img/student/register/leftgaga@2x.png"
-              alt=""
-            />
+            <img class="right-img" :src="rightGagaImg" alt="恭喜您" />
           </div>
           <!-- 中间 -->
           <div class="middle-area">
             <div class="box">
               <img
                 class="right-img"
-                src="@/assets/img/student/register/heart@2x.png"
-                alt=""
+                :src="heartImg"
+                alt="成功领取到一节50分钟一对一陪练课"
               />
               <p>成功领取到一节50分钟一对一陪练课！</p>
               <p>
@@ -101,8 +93,12 @@
 import { studentsList, studentRegister } from "@/api";
 import { Indicator } from "mint-ui";
 import registerBtn from "@/assets/img/student/register/register_btn@2x.png";
+import registerSuccessImg from "@/assets/img/success.png";
 import submitSuccess from "@/assets/img/student/register/submit_success.jpg";
 import registerHome from "@/assets/img/student/register/register_home.jpg";
+import leftGagaImg from "@/assets/img/student/register/leftgaga@2x.png";
+import rightGagaImg from "@/assets/img/student/register/rightgaga@2x.png";
+import heartImg from "@/assets/img/student/register/heart@2x.png";
 
 export default {
   name: "StudentRegister",
@@ -112,6 +108,10 @@ export default {
       registerBtn,
       submitSuccess,
       registerHome,
+      registerSuccessImg,
+      leftGagaImg,
+      rightGagaImg,
+      heartImg,
       next: false,
       formData: {
         name: "",
